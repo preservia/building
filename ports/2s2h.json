@@ -1,6 +1,7 @@
 {
   "name": "2Ship2Harkinian",
   "icon": "icons/2s2h.png",
+  "color": "#9A67A4",
   "author": "HarbourMasters",
   "version": "1.1.2",
   "description": "2Ship2Harkinian is a port of the Nintendo 64 game, A Legend of Zelda: Majora's Mask, to the Nintendo Switch. This port has many improvements like widescreen support, a built-in mod loader, and more. Open settings by clicking + and - at the same time.",
