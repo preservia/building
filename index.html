@@ -5,16 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Nintendo Switch Ports</title>
 
-<!-- Google fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
 <style>
   :root{
     --bg:#ffffff;
     --muted:#e9e9e9;
     --card:#efefef;
-    --accent:#c86a0a;
-    --accent-2:#3b7a2a;
     --text:#111;
     --radius:38px;
     --card-pad:28px;
@@ -24,11 +21,10 @@
   html,body{
     height:100%;
     margin:0;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family:'Inter',system-ui,sans-serif;
     background:var(--bg);
     color:var(--text);
     -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
   }
 
   .wrap{
@@ -42,17 +38,12 @@
     margin-bottom:36px;
   }
   h1{
-    font-family: 'Montserrat', sans-serif;
+    font-family:'Montserrat',sans-serif;
     font-weight:800;
-    font-size:84px;
+    font-size:54px; /* smaller title */
     margin:0;
     color:#9a9a9a;
     letter-spacing:1px;
-  }
-  .meta{
-    color:#9a9a9a;
-    margin-top:8px;
-    font-weight:600;
   }
 
   /* Grid */
@@ -69,13 +60,13 @@
     width:240px;
     box-sizing:border-box;
     text-align:center;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.03);
+    box-shadow:0 2px 0 rgba(0,0,0,0.03);
     cursor:pointer;
     transition:transform .12s ease, box-shadow .12s ease;
     user-select:none;
   }
-  .card:focus{ outline:3px solid rgba(0,0,0,0.08); }
   .card:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.06); }
+
   .icon{
     width:110px;
     height:110px;
@@ -86,13 +77,11 @@
     background:#ddd;
   }
   .title{
-    font-family: 'Montserrat', sans-serif;
+    font-family:'Montserrat',sans-serif;
     font-weight:700;
     font-size:22px;
     margin:6px 0;
-    color:var(--accent);
   }
-  .title.secondary{ color:var(--accent-2); }
   .ver{
     font-weight:700;
     color:#111;
@@ -118,19 +107,18 @@
     box-sizing:border-box;
     box-shadow:0 30px 80px rgba(0,0,0,0.15);
     display:grid;
-    grid-template-columns: 180px 1fr 180px;
+    grid-template-columns:180px 1fr 180px;
     gap:24px;
     align-items:start;
   }
 
-  /* Visual blur of background */
   .backdrop::before{
     content:"";
     position:fixed;
     inset:0;
     background:rgba(255,255,255,0.6);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    backdrop-filter:blur(6px);
     z-index:-1;
   }
 
@@ -140,13 +128,12 @@
     align-items:flex-start;
     gap:10px;
   }
-  .big-icon{ width:140px; height:140px; border-radius:8px; object-fit:cover; background:#ddd; }
+  .big-icon{ width:140px;height:140px;border-radius:8px;object-fit:cover;background:#ddd; }
 
   .details-title{
-    font-family: 'Montserrat', sans-serif;
+    font-family:'Montserrat',sans-serif;
     font-size:40px;
     margin:0 0 6px 0;
-    color:var(--accent);
   }
   .details-sub{
     margin:0 0 12px 0;
@@ -173,7 +160,7 @@
   .btn.download{ font-size:20px; width:160px; }
 
   .desc{
-    grid-column: 1 / span 3;
+    grid-column:1 / span 3;
     font-size:30px;
     line-height:1.08;
     text-align:center;
@@ -181,7 +168,6 @@
     font-weight:700;
   }
 
-  /* Back button */
   .nav-back{
     position:absolute;
     left:20px;
@@ -197,91 +183,59 @@
     cursor:pointer;
   }
 
-  /* Responsive */
-  @media (max-width:900px){
-    h1{ font-size:56px; }
-    .overlay{ grid-template-columns: 120px 1fr; }
-    .chips{ grid-column:3; display:flex; flex-direction:row; gap:10px; justify-self:end; }
-    .desc{ font-size:20px; grid-column: 1 / -1; }
+  @media(max-width:900px){
+    h1{ font-size:42px; }
+    .overlay{ grid-template-columns:120px 1fr; }
+    .desc{ font-size:20px; grid-column:1 / -1; }
   }
-  @media (max-width:560px){
+  @media(max-width:560px){
     .grid{ justify-content:center; }
     .card{ width:80%; max-width:360px; }
-    h1{ font-size:40px; }
-    .overlay{ width:96%; padding:18px; border-radius:26px; grid-template-columns: 100px 1fr; gap:12px; }
+    h1{ font-size:36px; }
+    .overlay{ width:96%; padding:18px; border-radius:26px; grid-template-columns:100px 1fr; gap:12px; }
     .desc{ font-size:18px; }
     .details-title{ font-size:28px; }
-    .chips{ gap:8px; }
-    .btn{ padding:12px 18px; width:120px; border-radius:20px; }
   }
-
-  /* small helper */
-  .hidden{ display:none; }
-  a.plain{ color:inherit; text-decoration:none; }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Nintendo Switch Ports</h1>
-      <div class="meta" id="meta">Last Updated: — • 0 Ports Available</div>
-    </header>
+<div class="wrap">
+  <header>
+    <h1>Nintendo Switch Ports</h1>
+  </header>
 
-    <main>
-      <section class="grid" id="grid" aria-live="polite" role="list">
-        <!-- cards injected here -->
-      </section>
-    </main>
-  </div>
+  <main>
+    <section class="grid" id="grid"></section>
+  </main>
+</div>
 
-  <!-- Details/backdrop -->
-  <div class="backdrop" id="backdrop" aria-hidden="true" role="dialog" aria-modal="true" >
-    <div class="overlay" role="document">
-      <button class="nav-back" id="closeBtn" aria-label="Close details">←</button>
+<!-- Details overlay -->
+<div class="backdrop" id="backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="overlay" role="document">
+    <button class="nav-back" id="closeBtn" aria-label="Close details">←</button>
 
-      <div class="back-left">
-        <img src="" alt="" class="big-icon" id="detailIcon">
-        <div style="font-weight:700; color:#333;" id="detailAuthor"></div>
-        <div style="font-weight:700; color:#111;" id="detailVersion"></div>
-      </div>
-
-      <div>
-        <h2 class="details-title" id="detailTitle">Title</h2>
-        <div class="details-sub" id="detailAuthorName">Author</div>
-        <!-- additional meta can go here -->
-      </div>
-
-      <div class="chips" id="detailChips">
-        <button class="btn download" id="downloadBtn">Download</button>
-        <button class="btn" id="sourceBtn">Source</button>
-      </div>
-
-      <div class="desc" id="detailDesc">Description</div>
+    <div class="back-left">
+      <img src="" alt="" class="big-icon" id="detailIcon">
+      <div id="detailAuthor"></div>
+      <div id="detailVersion"></div>
     </div>
+
+    <div>
+      <h2 class="details-title" id="detailTitle">Title</h2>
+      <div class="details-sub" id="detailAuthorName">Author</div>
+    </div>
+
+    <div class="chips">
+      <button class="btn download" id="downloadBtn">Download</button>
+      <button class="btn" id="sourceBtn">Source</button>
+    </div>
+
+    <div class="desc" id="detailDesc">Description</div>
   </div>
+</div>
 
 <script>
-/*
-  Single-file site loader:
-  - Expects "ports.json" in repo root (relative fetch).
-  - ports.json can be either:
-     {"1":"soh","2":"2s2h"}   (object mapping index -> slug)
-     or ["soh","2s2h"]        (array of slugs)
-  - For each slug, loads "ports/{slug}.json".
-  - Each port json should contain:
-      {
-        "name":"2Ship2Harkinian",
-        "icon":"images.com/2s2h.png",
-        "author":"ryandeering",
-        "version":"1.0",
-        "description":"Example description",
-        "source":"source.com/2s2h",
-        "download":"files.com/2s2h.zip"
-      }
-*/
-
 const grid = document.getElementById('grid');
-const meta = document.getElementById('meta');
 const backdrop = document.getElementById('backdrop');
 const closeBtn = document.getElementById('closeBtn');
 
@@ -294,24 +248,22 @@ const detailDesc = document.getElementById('detailDesc');
 const downloadBtn = document.getElementById('downloadBtn');
 const sourceBtn = document.getElementById('sourceBtn');
 
-let portsList = []; // array of port objects as loaded
-let lastUpdated = null;
+let portsList = [];
 
 async function fetchJSON(path){
-  try {
-    const res = await fetch(path, {cache: "no-cache"});
-    if(!res.ok) throw new Error('HTTP '+res.status);
+  try{
+    const res = await fetch(path, {cache:"no-cache"});
+    if(!res.ok) throw new Error(res.status);
     return await res.json();
-  } catch(err){
-    console.warn('Failed to fetch', path, err);
+  }catch(e){
+    console.warn("Failed to fetch", path, e);
     return null;
   }
 }
 
-function makeCard(port, idx){
+function makeCard(port){
   const el = document.createElement('button');
   el.className = 'card';
-  el.setAttribute('role','listitem');
   el.setAttribute('aria-label', port.name + ' — open details');
   el.tabIndex = 0;
 
@@ -324,6 +276,7 @@ function makeCard(port, idx){
   const title = document.createElement('div');
   title.className = 'title';
   title.textContent = port.name;
+  if(port.color) title.style.color = port.color;
   el.appendChild(title);
 
   const ver = document.createElement('div');
@@ -331,21 +284,8 @@ function makeCard(port, idx){
   ver.textContent = port.version ? 'v' + port.version : '';
   el.appendChild(ver);
 
-  el.addEventListener('click', ()=> openDetails(port));
-  el.addEventListener('keydown', (e)=>{
-    if(e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      openDetails(port);
-    }
-  });
-
+  el.addEventListener('click',()=>openDetails(port));
   return el;
-}
-
-function updateMeta(){
-  const count = portsList.length;
-  const updatedText = lastUpdated ? new Date(lastUpdated).toLocaleDateString() : '—';
-  meta.textContent = `Last Updated: ${updatedText} • ${count} Port${count===1?'':'s'} Available`;
 }
 
 function openDetails(port){
@@ -355,122 +295,48 @@ function openDetails(port){
   detailAuthorName.textContent = port.author || '';
   detailVersion.textContent = port.version ? 'v' + port.version : '';
   detailDesc.textContent = port.description || '';
+  detailTitle.style.color = port.color || '#000';
 
-  // buttons
   if(port.download){
-    downloadBtn.onclick = ()=> { window.open(port.download, '_blank'); };
+    downloadBtn.onclick = ()=>window.open(port.download,'_blank');
     downloadBtn.disabled = false;
-  } else {
-    downloadBtn.onclick = null;
-    downloadBtn.disabled = true;
-  }
+  }else downloadBtn.disabled = true;
+
   if(port.source){
-    sourceBtn.onclick = ()=> { window.open(port.source, '_blank'); };
+    sourceBtn.onclick = ()=>window.open(port.source,'_blank');
     sourceBtn.disabled = false;
-  } else {
-    sourceBtn.onclick = null;
-    sourceBtn.disabled = true;
-  }
+  }else sourceBtn.disabled = true;
 
   showBackdrop();
 }
 
 function showBackdrop(){
   backdrop.classList.add('show');
-  backdrop.setAttribute('aria-hidden','false');
-  // lock scroll
-  document.body.style.overflow = 'hidden';
-  // focus close
-  closeBtn.focus();
-  // trap focus simplest way
-  document.addEventListener('focus', trapFocus, true);
+  document.body.style.overflow='hidden';
 }
-
 function hideBackdrop(){
   backdrop.classList.remove('show');
-  backdrop.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
-  document.removeEventListener('focus', trapFocus, true);
+  document.body.style.overflow='';
 }
-
-function trapFocus(e){
-  const container = backdrop;
-  if(!container.contains(e.target)){
-    e.stopPropagation();
-    closeBtn.focus();
-  }
-}
-
-// close handlers
 closeBtn.addEventListener('click', hideBackdrop);
-backdrop.addEventListener('click', (e)=>{
-  // clicking outside the overlay closes (but clicking overlay's children won't)
-  if(e.target === backdrop) hideBackdrop();
-});
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape' && backdrop.classList.contains('show')) hideBackdrop();
-});
+backdrop.addEventListener('click', e=>{ if(e.target===backdrop) hideBackdrop(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && backdrop.classList.contains('show')) hideBackdrop(); });
 
-// bootstrap loader
 (async function init(){
-  // 1) try to fetch ports.json (root)
   const manifest = await fetchJSON('ports.json');
   if(!manifest){
-    // show helpful fallback
-    grid.innerHTML = '<div style="padding:40px; color:#666">Could not load <strong>ports.json</strong>. Make sure it exists in the repository root.</div>';
+    grid.innerHTML='<div style="padding:40px;color:#666">Could not load ports.json</div>';
     return;
   }
-
-  // Support both array and object form
-  let slugs = [];
-  if(Array.isArray(manifest)){
-    slugs = manifest;
-  } else if(typeof manifest === 'object'){
-    // If manifest is object mapping numbers->slug, collect values
-    slugs = Object.values(manifest);
-    // optionally extract last modified timestamp if present
-    if(manifest._updated) lastUpdated = manifest._updated;
-  }
-
-  // If ports.json might include a dedicated updated time e.g. {"_updated":"2025-10-11", ...}
-  if(manifest._updated) lastUpdated = manifest._updated;
-
-  // 2) fetch each port json
-  const loaded = [];
+  const slugs = Array.isArray(manifest)?manifest:Object.values(manifest);
+  const loaded=[];
   for(const slug of slugs){
-    if(!slug) continue;
-    const portJson = await fetchJSON('ports/' + slug + '.json');
-    if(portJson){
-      // add slug just in case
-      portJson._slug = slug;
-      loaded.push(portJson);
-    } else {
-      // create a placeholder if one failed
-      loaded.push({
-        name: slug,
-        icon: '',
-        author: '',
-        version: '',
-        description: 'Failed to load metadata for ' + slug,
-        download: null,
-        source: null,
-        _slug: slug
-      });
-    }
+    const data = await fetchJSON('ports/'+slug+'.json');
+    if(data){ data._slug=slug; loaded.push(data); }
   }
-
-  // store and render
   portsList = loaded;
-  grid.innerHTML = '';
-  loaded.forEach((p,i)=>{
-    const card = makeCard(p, i);
-    grid.appendChild(card);
-  });
-
-  // if we couldn't derive lastUpdated, use now
-  if(!lastUpdated) lastUpdated = new Date().toISOString();
-  updateMeta();
-
+  grid.innerHTML='';
+  loaded.forEach(p=>grid.appendChild(makeCard(p)));
 })();
 </script>
 </body>
