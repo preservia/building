@@ -1,8 +1,0 @@
-{
-  "items": [
-    { "path": "Ship of Harkinian/soh.zip", "url": "https://example.com/files/soh.zip" },
-    { "path": "Ship of Harkinian/Information.txt" },
-    { "path": "2Ship2Harkinian/2s2h.zip", "url": "https://cdn.example.org/2s2h.zip" },
-    { "path": "2Ship2Harkinian/Information.txt" }
-  ]
-}
