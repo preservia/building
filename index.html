@@ -13,8 +13,8 @@
   --bg: #fff;
   --card: #f4f4f4;
   --text: #111;
-  --max-width: 1200px;
   --radius: 38px;
+  --max-width: 1200px;
 }
 
 /* ===== Base ===== */
@@ -33,10 +33,10 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 60px 40px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 header {
@@ -55,7 +55,7 @@ header {
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 56px;
+  font-size: 50px;
   color: #8c8c8c;
   margin: 0 0 8px 0;
 }
@@ -70,7 +70,6 @@ h1 {
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-top: 10px;
 }
 
 .socials img {
@@ -80,35 +79,29 @@ h1 {
   transition: transform 0.2s ease;
   -webkit-user-drag: none;
 }
-
 .socials img:hover {
   transform: scale(1.1);
 }
 
 /* ===== Grid ===== */
 .grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 32px;
-  justify-content: flex-start;
+  justify-content: space-between;
   opacity: 0;
   transform: translateY(40px);
   animation: slideUp 0.9s cubic-bezier(.25,.8,.25,1) forwards;
 }
 
 @keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .card {
   background: var(--card);
   border-radius: var(--radius);
   padding: 22px;
-  width: 240px;
-  box-sizing: border-box;
   text-align: center;
   cursor: pointer;
   transition: transform 0.18s ease;
@@ -116,7 +109,7 @@ h1 {
   border: none;
 }
 .card:hover {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .icon {
@@ -124,9 +117,7 @@ h1 {
   height: 110px;
   object-fit: cover;
   border-radius: 10px;
-  display: block;
   margin: 0 auto 14px;
-  background: #ddd;
 }
 
 .title {
@@ -176,9 +167,16 @@ h1 {
   opacity: 0;
   animation: popIn .35s ease forwards;
 }
+.details.hide {
+  animation: popOut .3s ease forwards;
+}
 @keyframes popIn {
   from { transform: scale(.95); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+@keyframes popOut {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(.92); opacity: 0; }
 }
 
 .close-btn {
@@ -301,6 +299,7 @@ githubLink.onclick = () => window.open('https://github.com/', '_blank');
 
 // Details elements
 const backdrop = document.getElementById('backdrop');
+const detailsBox = document.getElementById('detailsBox');
 const closeBtn = document.getElementById('closeBtn');
 const detailIcon = document.getElementById('detailIcon');
 const detailTitle = document.getElementById('detailTitle');
@@ -357,23 +356,22 @@ function openDetails(port) {
   detailTitle.style.color = port.color || '#000';
   downloadBtn.style.background = port.color || '#555';
 
-  if (port.source) {
-    sourceBtn.onclick = () => window.open(port.source, '_blank');
-    sourceBtn.disabled = false;
-  } else sourceBtn.disabled = true;
+  sourceBtn.onclick = () => port.source && window.open(port.source, '_blank');
+  downloadBtn.onclick = () => port.download && window.open(port.download, '_blank');
 
-  if (port.download) {
-    downloadBtn.onclick = () => window.open(port.download, '_blank');
-    downloadBtn.disabled = false;
-  } else downloadBtn.disabled = true;
-
+  detailsBox.classList.remove('hide');
   backdrop.classList.add('show');
   document.body.style.overflow = 'hidden';
 }
+
 function hideDetails() {
-  backdrop.classList.remove('show');
-  document.body.style.overflow = '';
+  detailsBox.classList.add('hide');
+  setTimeout(() => {
+    backdrop.classList.remove('show');
+    document.body.style.overflow = '';
+  }, 280); // match popOut animation timing
 }
+
 closeBtn.onclick = hideDetails;
 backdrop.onclick = e => { if (e.target === backdrop) hideDetails(); };
 document.onkeydown = e => { if (e.key === 'Escape' && backdrop.classList.contains('show')) hideDetails(); };
