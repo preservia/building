@@ -1,0 +1,10 @@
+{
+  "name": "Spaghetti Kart",
+  "icon": "icons/spagettify.png",
+  "color": "#071826",
+  "author": "HarbourMasters",
+  "version": "1.0.0",
+  "description": "Spaghetti Kart is a port of the Nintendo 64 game, Mario Kart 64, to the Nintendo Switch. This port has many improvements like widescreen support, increased rendering resolution, and more. Open settings by clicking + and - at the same time.",
+  "source": "https://github.com/HarbourMasters/SpaghettiKart",
+  "download": "files.com/2s2h.zip"
+}
