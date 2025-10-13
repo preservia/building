@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Nintendo Switch Ports</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:wght@700&family=Golos+Text:wght@400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,8 +21,8 @@
   position: fixed;
   top: 0vh;
   left: 0;
-  bottom: -20vh;
   width: 100vw;
+  height: calc(100vh + env(safe-area-inset-bottom));
   z-index: -1;
   background: linear-gradient(to bottom, var(--bg) 65%, var(--green) 115%);
   padding-top: env(safe-area-inset-top);
