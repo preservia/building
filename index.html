@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Nintendo Switch Ports</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700;800&family=Dongle:wght@400&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:wght@700&family=Golos+Text:wght@400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --green: #00DE50;
+  --green: #8ef48e;
   --bg: #fff;
   --card-bg: rgba(255,255,255,0.5);
   --text: #111;
@@ -21,7 +22,7 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(to bottom, var(--bg) 70%, var(--green) 100%);
+  background: linear-gradient(to bottom, var(--bg) 65%, var(--green) 115%);
   background-attachment: fixed;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -42,7 +43,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* Fixed vertical alignment */
   margin-bottom: 40px;
 }
 
@@ -53,8 +54,8 @@ header {
 }
 
 h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 700;
   font-size: 50px;
   color: #8c8c8c;
   margin: 0 0 8px 0;
@@ -124,7 +125,7 @@ h1 {
 }
 
 .title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Zalando Sans Expanded', sans-serif;
   font-weight: 700;
   font-size: 22px;
   margin: 6px 0;
@@ -149,7 +150,11 @@ h1 {
   opacity: 0;
   pointer-events: none;
   z-index: 60;
-  transition: backdrop-filter 0.35s ease-in-out, -webkit-backdrop-filter 0.35s ease-in-out, background-color 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  transition:
+    backdrop-filter 0.35s ease-in-out,
+    -webkit-backdrop-filter 0.35s ease-in-out,
+    background-color 0.35s ease-in-out,
+    opacity 0.35s ease-in-out;
 }
 .backdrop.show {
   pointer-events: all;
@@ -167,15 +172,17 @@ h1 {
   max-width: 600px;
   width: 90%;
   box-shadow: 0 20px 60px rgba(0,0,0,.15);
-  transform: scale(.95);
+  transform: scale(.92);
   opacity: 0;
+}
+.details.show {
   animation: popIn 0.35s ease-in-out forwards;
 }
 .details.hide {
   animation: popOut 0.35s ease-in-out forwards;
 }
 @keyframes popIn {
-  from { transform: scale(.95); opacity: 0; }
+  from { transform: scale(.92); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 @keyframes popOut {
@@ -185,19 +192,23 @@ h1 {
 
 .close-btn {
   position: absolute;
-  top: 24px;
+  top: 22px; /* Adjusted to be more centered */
   left: 24px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
   border: none;
-  background: #d9d9d9;
+  background: #d9d9d9 !important;
+  color: #111 !important;
+  -webkit-appearance: none;
+  appearance: none;
   font-size: 22px;
   font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
   transition: background .2s ease;
 }
 .close-btn:hover { background: #cfcfcf; }
@@ -205,12 +216,13 @@ h1 {
 .details img {
   width: 120px;
   height: 120px;
-  border-radius: 10px;
+  border-radius: 20px;
   object-fit: cover;
   margin-bottom: 12px;
 }
 .details h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 700;
   font-size: 28px;
   margin: 0;
 }
@@ -231,7 +243,7 @@ h1 {
   border: none;
   border-radius: 20px;
   padding: 10px 26px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Zalando Sans Expanded', sans-serif;
   font-weight: 700;
   font-size: 18px;
   cursor: pointer;
@@ -241,12 +253,30 @@ h1 {
 .btn.source { background: #d9d9d9; color: #111; }
 .btn.download { color: #fff; }
 .desc {
-  font-family: 'Dongle', sans-serif;
+  font-family: 'Golos Text', sans-serif;
+  font-weight: 400;
   font-size: 28px;
   line-height: 1.15;
   color: #222;
   max-width: 540px;
   margin: 10px auto 0;
+}
+
+.preservia-logo {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(140px, 30vw, 280px);
+  opacity: 0.85;
+  z-index: 10;
+  pointer-events: none;
+  animation: fadeInLogo 1s ease 1.2s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInLogo {
+  to { opacity: 0.85; }
 }
 
 @media(max-width:600px){
@@ -276,6 +306,9 @@ h1 {
   </main>
 </div>
 
+<!-- Preservia logo -->
+<img src="assets/logo.png" alt="Preservia" class="preservia-logo">
+
 <!-- ===== Details Popup ===== -->
 <div class="backdrop" id="backdrop">
   <div class="details" id="detailsBox">
@@ -297,11 +330,10 @@ const portCount = document.getElementById('portCount');
 const twitterLink = document.getElementById('twitterLink');
 const githubLink = document.getElementById('githubLink');
 
-// Socials
-twitterLink.onclick = () => window.open('https://twitter.com/Preservia_', '_blank');
-githubLink.onclick = () => window.open('https://github.com/preservia', '_blank');
+twitterLink.onclick = () => window.open('https://twitter.com/', '_blank');
+githubLink.onclick = () => window.open('https://github.com/', '_blank');
 
-// Details elements
+// Details
 const backdrop = document.getElementById('backdrop');
 const detailsBox = document.getElementById('detailsBox');
 const closeBtn = document.getElementById('closeBtn');
@@ -363,17 +395,26 @@ function openDetails(port) {
   sourceBtn.onclick = () => port.source && window.open(port.source, '_blank');
   downloadBtn.onclick = () => port.download && window.open(port.download, '_blank');
 
-  detailsBox.classList.remove('hide');
+  // Blur and dim first
   backdrop.classList.add('show');
   document.body.style.overflow = 'hidden';
+  detailsBox.classList.remove('show', 'hide');
+  detailsBox.style.opacity = '0';
+  detailsBox.style.transform = 'scale(.92)';
+
+  // After slight delay, pop in details
+  setTimeout(() => {
+    detailsBox.classList.add('show');
+  }, 180);
 }
 
 function hideDetails() {
+  detailsBox.classList.remove('show');
   detailsBox.classList.add('hide');
   setTimeout(() => {
     backdrop.classList.remove('show');
     document.body.style.overflow = '';
-  }, 350); // perfectly synced with animation
+  }, 350);
 }
 
 closeBtn.onclick = hideDetails;
