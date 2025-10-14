@@ -1,0 +1,10 @@
+{
+  "name": "OpenRCT2",
+  "icon": "icons/openrct2.png",
+  "color": "#588FEA",
+  "author": "rsn8887",
+  "version": "1.06",
+  "description": "Switch port of the open source re-implementation of RollerCoaster Tycoon 2 🎢",
+  "source": "https://github.com/rsn8887/OpenRCT2",
+  "download": "files.com/2s2h.zip"
+}
