@@ -327,8 +327,8 @@ h1 {
       <div id="portCount">0 Ports Available</div>
     </div>
     <div class="socials-desktop">
-      <img src="assets/twitter.png" alt="Twitter" id="twitterLink">
-      <img src="assets/github.png" alt="GitHub" id="githubLink">
+      <img src="assets/twitter.png" alt="Twitter" id="twitterLinkD">
+      <img src="assets/github.png" alt="GitHub" id="githubLinkD">
     </div>
   </header>
   <main>
@@ -339,8 +339,8 @@ h1 {
 <!-- Preservia logo -->
 <img src="assets/logo.png" alt="Preservia" class="preservia-logo">
 <div class="socials socials-mobile">
-  <img src="assets/twitter.png" alt="Twitter" id="twitterLink">
-  <img src="assets/github.png" alt="GitHub" id="githubLink">
+  <img src="assets/twitter.png" alt="Twitter" id="twitterLinkM">
+  <img src="assets/github.png" alt="GitHub" id="githubLinkM">
 </div
 
 
@@ -362,11 +362,11 @@ h1 {
 <script>
 const grid = document.getElementById('grid');
 const portCount = document.getElementById('portCount');
-const twitterLink = document.getElementById('twitterLink');
-const githubLink = document.getElementById('githubLink');
+const twitterLinks = document.querySelectorAll('#twitterLinkD, #twitterLinkM');
+const githubLinks = document.querySelectorAll('#githubLinkD, #githubLinkM');
 
-twitterLink.onclick = () => window.open('https://twitter.com/Preservia_', '_blank');
-githubLink.onclick = () => window.open('https://github.com/preservia', '_blank');
+twitterLinks.forEach(el => el.onclick = () => window.open('https://twitter.com/Preservia_', '_blank'));
+githubLinks.forEach(el => el.onclick = () => window.open('https://github.com/preservia', '_blank'));
   
 // Details
 const backdrop = document.getElementById('backdrop');
