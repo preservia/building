@@ -95,6 +95,18 @@ h1 {
   transform: scale(1.1);
 }
 
+.socials-mobile { display: none; }
+
+@media (max-width: 700px) {
+  .socials-desktop { display: none; }
+  .socials-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 60px; /* nice spacing below logo */
+  }
+}
+
 /* ===== Grid ===== */
 .grid {
   display: grid;
@@ -304,7 +316,7 @@ h1 {
       <h1>Nintendo Switch Ports</h1>
       <div id="portCount">0 Ports Available</div>
     </div>
-    <div class="socials">
+    <div class="socials-desktop">
       <img src="assets/twitter.png" alt="Twitter" id="twitterLink">
       <img src="assets/github.png" alt="GitHub" id="githubLink">
     </div>
@@ -316,6 +328,10 @@ h1 {
 
 <!-- Preservia logo -->
 <img src="assets/logo.png" alt="Preservia" class="preservia-logo">
+<div class="socials socials-mobile">
+  <img src="assets/twitter.png" alt="Twitter" id="twitterLinkMobile">
+  <img src="assets/github.png" alt="GitHub" id="githubLinkMobile">
+</div
 
 
 <!-- ===== Details Popup ===== -->
