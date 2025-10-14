@@ -336,12 +336,12 @@ h1 {
 <script>
 const grid = document.getElementById('grid');
 const portCount = document.getElementById('portCount');
-const twitterLink = document.getElementById('twitterLink');
-const githubLink = document.getElementById('githubLink');
+const twitterLinks = document.querySelectorAll('#twitterLinkDesktop, #twitterLinkMobile');
+const githubLinks = document.querySelectorAll('#githubLinkDesktop, #githubLinkMobile');
 
-twitterLink.onclick = () => window.open('https://twitter.com/Preservia_', '_blank');
-githubLink.onclick = () => window.open('https://github.com/preservia', '_blank');
-
+twitterLinks.forEach(el => el.onclick = () => window.open('https://twitter.com/Preservia_', '_blank'));
+githubLinks.forEach(el => el.onclick = () => window.open('https://github.com/preservia', '_blank'));
+  
 // Details
 const backdrop = document.getElementById('backdrop');
 const detailsBox = document.getElementById('detailsBox');
