@@ -336,15 +336,12 @@ h1 {
   </main>
 </div>
 
-<!-- Preservia logo -->
 <img src="assets/logo.png" alt="Preservia" class="preservia-logo">
 <div class="socials socials-mobile">
   <img src="assets/twitter.png" alt="Twitter" id="twitterLinkM">
   <img src="assets/github.png" alt="GitHub" id="githubLinkM">
 </div
 
-
-<!-- ===== Details Popup ===== -->
 <div class="backdrop" id="backdrop">
   <div class="details" id="detailsBox">
     <button class="close-btn" id="closeBtn">✕</button>
@@ -368,7 +365,6 @@ const githubLinks = document.querySelectorAll('#githubLinkD, #githubLinkM');
 twitterLinks.forEach(el => el.onclick = () => window.open('https://twitter.com/Preservia_', '_blank'));
 githubLinks.forEach(el => el.onclick = () => window.open('https://github.com/preservia', '_blank'));
   
-// Details
 const backdrop = document.getElementById('backdrop');
 const detailsBox = document.getElementById('detailsBox');
 const closeBtn = document.getElementById('closeBtn');
@@ -380,7 +376,6 @@ const detailDesc = document.getElementById('detailDesc');
 const downloadBtn = document.getElementById('downloadBtn');
 const sourceBtn = document.getElementById('sourceBtn');
 
-// ===== Fetching JSON =====
 async function fetchJSON(path) {
   try {
     const res = await fetch(path, { cache: "no-cache" });
@@ -392,7 +387,6 @@ async function fetchJSON(path) {
   }
 }
 
-// ===== Cards =====
 function makeCard(port) {
   const el = document.createElement('button');
   el.className = 'card';
@@ -417,7 +411,6 @@ function makeCard(port) {
   return el;
 }
 
-// ===== Modal Logic =====
 function openDetails(port) {
   detailIcon.src = port.icon || '';
   detailTitle.textContent = port.name || '';
@@ -430,14 +423,12 @@ function openDetails(port) {
   sourceBtn.onclick = () => port.source && window.open(port.source, '_blank');
   downloadBtn.onclick = () => port.download && window.open(port.download, '_blank');
 
-  // Blur and dim first
   backdrop.classList.add('show');
   document.body.style.overflow = 'hidden';
   detailsBox.classList.remove('show', 'hide');
   detailsBox.style.opacity = '0';
   detailsBox.style.transform = 'scale(.92)';
 
-  // After slight delay, pop in details
   setTimeout(() => {
     detailsBox.classList.add('show');
   }, 350);
@@ -456,7 +447,6 @@ closeBtn.onclick = hideDetails;
 backdrop.onclick = e => { if (e.target === backdrop) hideDetails(); };
 document.onkeydown = e => { if (e.key === 'Escape' && backdrop.classList.contains('show')) hideDetails(); };
 
-// ===== Initialize =====
 (async function init() {
   const manifest = await fetchJSON('ports.json');
   if (!manifest) {
