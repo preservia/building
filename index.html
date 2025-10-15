@@ -364,7 +364,7 @@ const githubLinks = document.querySelectorAll('#githubLinkD, #githubLinkM');
 
 twitterLinks.forEach(el => el.onclick = () => window.open('https://twitter.com/Preservia_', '_blank'));
 githubLinks.forEach(el => el.onclick = () => window.open('https://github.com/preservia', '_blank'));
-  
+
 const backdrop = document.getElementById('backdrop');
 const detailsBox = document.getElementById('detailsBox');
 const closeBtn = document.getElementById('closeBtn');
@@ -446,6 +446,7 @@ function hideDetails() {
 closeBtn.onclick = hideDetails;
 backdrop.onclick = e => { if (e.target === backdrop) hideDetails(); };
 document.onkeydown = e => { if (e.key === 'Escape' && backdrop.classList.contains('show')) hideDetails(); };
+
 
 (async function init() {
   const manifest = await fetchJSON('ports.json');
