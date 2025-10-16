@@ -148,6 +148,12 @@ h1 {
 .card:hover {
   transform: scale(1.05);
 }
+.card .meta {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  opacity: 0.75;
+}
 
 .icon {
   width: 110px;
@@ -408,10 +414,12 @@ function makeCard(port) {
   if (port.color) title.style.color = port.color;
   el.appendChild(title);
 
-  const ver = document.createElement('div');
-  ver.className = 'ver';
-  ver.textContent = port.version ? 'v' + port.version : '';
-  el.appendChild(ver);
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  const author = port.author || '';
+  const version = port.version ? 'v' + port.version : '';
+  meta.textContent = author && version ? `${author} • ${version}` : author || version;
+  el.appendChild(meta);
 
   el.onclick = () => openDetails(port);
   return el;
