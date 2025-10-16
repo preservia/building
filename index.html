@@ -50,7 +50,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Fixed vertical alignment */
+  align-items: flex-start; 
   margin-bottom: 40px;
 }
 
@@ -344,10 +344,8 @@ h1 {
 <div class="socials socials-mobile">
   <img src="assets/twitter.png" alt="Twitter" id="twitterLinkM">
   <img src="assets/github.png" alt="GitHub" id="githubLinkM">
-</div
+</div>
 
-
-<!-- ===== Details Popup ===== -->
 <div class="backdrop" id="backdrop">
   <div class="details" id="detailsBox">
     <button class="close-btn" id="closeBtn">✕</button>
@@ -383,7 +381,6 @@ const detailDesc = document.getElementById('detailDesc');
 const downloadBtn = document.getElementById('downloadBtn');
 const sourceBtn = document.getElementById('sourceBtn');
 
-// ===== Fetching JSON =====
 async function fetchJSON(path) {
   try {
     const res = await fetch(path, { cache: "no-cache" });
