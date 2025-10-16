@@ -417,10 +417,9 @@ function makeCard(port) {
   const meta = document.createElement('div');
   meta.className = 'meta';
   const author = port.author || '';
-  const version = port.version ? 'v' + port.version : '';
-  meta.textContent = author && version ? `${author} • ${version}` : author || version;
+  meta.textContent = author;
   el.appendChild(meta);
-
+  
   el.onclick = () => openDetails(port);
   return el;
 }
