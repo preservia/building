@@ -391,7 +391,6 @@ async function fetchJSON(path) {
   }
 }
 
-// ===== Cards =====
 function makeCard(port) {
   const el = document.createElement('button');
   el.className = 'card';
@@ -417,7 +416,6 @@ function makeCard(port) {
   return el;
 }
 
-// ===== Modal Logic =====
 function openDetails(port) {
   detailIcon.src = port.icon || '';
   detailTitle.textContent = port.name || '';
@@ -430,14 +428,12 @@ function openDetails(port) {
   sourceBtn.onclick = () => port.source && window.open(port.source, '_blank');
   downloadBtn.onclick = () => port.download && window.open(port.download, '_blank');
 
-  // Blur and dim first
   backdrop.classList.add('show');
   document.body.style.overflow = 'hidden';
   detailsBox.classList.remove('show', 'hide');
   detailsBox.style.opacity = '0';
   detailsBox.style.transform = 'scale(.92)';
 
-  // After slight delay, pop in details
   setTimeout(() => {
     detailsBox.classList.add('show');
   }, 350);
