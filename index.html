@@ -452,7 +452,6 @@ closeBtn.onclick = hideDetails;
 backdrop.onclick = e => { if (e.target === backdrop) hideDetails(); };
 document.onkeydown = e => { if (e.key === 'Escape' && backdrop.classList.contains('show')) hideDetails(); };
 
-// ===== Initialize =====
 (async function init() {
   const manifest = await fetchJSON('ports.json');
   if (!manifest) {
