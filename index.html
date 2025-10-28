@@ -1,76 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preservia Loading Test</title>
-<style>
-html,body{
-  margin:0;
-  padding:0;
-  height:100%;
-  font-family:sans-serif;
-  overflow:hidden;
-  background:#fff;
-}
-#preloader{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(to top,#ffffff 100%,#c1413c 0%);
-  background-repeat:no-repeat;
-  background-size:100% 0%;
-  animation:fillUp 4s forwards;
-  z-index:10;
-}
-#logo{
-  width:200px;
-  height:auto;
-}
-#loadingText{
-  margin-top:1rem;
-  font-size:1.2rem;
-  opacity:0;
-  color:#000;
-  animation:fadeIn 1s forwards 1s;
-}
-@keyframes fadeIn{to{opacity:1;}}
-@keyframes fadeOut{to{opacity:0;}}
-@keyframes fillUp{
-  0%{background-size:100% 0%;}
-  100%{background-size:100% 100%;}
-}
-#main{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  font-size:2rem;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3DS Font Library – Preservia</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="preloader">
-  <img id="logo" src="https://raw.githubusercontent.com/Preservia/assets/main/logo.png" alt="Preservia Logo">
-  <div id="loadingText">Loading fonts...</div>
-</div>
-<div id="main">
-  Hello World
-</div>
-<script>
-const preloader=document.getElementById('preloader');
-const loadingText=document.getElementById('loadingText');
-setTimeout(()=>{loadingText.textContent='Fonts loaded!';},4000);
-setTimeout(()=>{
-  preloader.style.animation='fadeOut 1s forwards';
-  preloader.addEventListener('animationend',()=>{preloader.remove();document.body.style.overflow='auto';});
-},5500);
-</script>
+  <div class="page">
+    <header>
+      <h1><span class="red3">3</span>DS Font Library</h1>
+      <p class="desc">Explore system fonts used across the Nintendo 3DS ecosystem.</p>
+    </header>
+
+    <div class="toolbar">
+      <div class="searchbar">
+        <img src="assets/search.png" alt="Search">
+        <input type="text" placeholder="Search..." disabled>
+      </div>
+      <button class="filter-btn" disabled>
+        <img src="assets/filter.png" alt="Filter">
+      </button>
+    </div>
+
+    <section id="original-fonts">
+      <h2>Original Fonts</h2>
+      <p class="section-desc">Fonts ported by the Preservia team.</p>
+      <div class="font-grid" id="original-grid"></div>
+    </section>
+
+    <section id="community-fonts">
+      <h2>Community Fonts</h2>
+      <p class="section-desc">Fonts ported by the homebrew community.</p>
+      <div class="font-grid" id="community-grid"></div>
+    </section>
+
+    <footer>
+      <img src="assets/logo.png" alt="Preservia Logo" class="preservia-logo">
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
