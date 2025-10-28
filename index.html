@@ -19,19 +19,19 @@ html,body{
   left:0;
   width:100%;
   height:100%;
-  background:#fff;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  background:linear-gradient(to top,#ffffff 100%,#c1413c 0%);
+  background-repeat:no-repeat;
+  background-size:100% 0%;
+  animation:fillUp 4s forwards;
   z-index:10;
-  animation:fill 4s forwards;
 }
 #logo{
   width:200px;
   height:auto;
-  opacity:1;
-  transition:opacity 1s;
 }
 #loadingText{
   margin-top:1rem;
@@ -40,12 +40,12 @@ html,body{
   color:#000;
   animation:fadeIn 1s forwards 1s;
 }
-@keyframes fill{
-  0%{background:linear-gradient(to top,#ffffff 0%,#ffffff 100%);}
-  100%{background:linear-gradient(to top,#c1413c 0%,#c1413c 100%);}
-}
 @keyframes fadeIn{to{opacity:1;}}
 @keyframes fadeOut{to{opacity:0;}}
+@keyframes fillUp{
+  0%{background-size:100% 0%;}
+  100%{background-size:100% 100%;}
+}
 #main{
   display:flex;
   justify-content:center;
@@ -57,7 +57,7 @@ html,body{
 </head>
 <body>
 <div id="preloader">
-  <img id="logo" src="logo.png" alt="Preservia Logo">
+  <img id="logo" src="https://raw.githubusercontent.com/Preservia/assets/main/logo.png" alt="Preservia Logo">
   <div id="loadingText">Loading fonts...</div>
 </div>
 <div id="main">
