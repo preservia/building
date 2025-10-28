@@ -1,38 +1,64 @@
-/* Global */
-body {
-  margin: 0;
-  font-family: "Zilla Slab", sans-serif;
-  background: linear-gradient(to bottom, #BD2F29, #ffffff);
-  background-attachment: fixed;
-  color: #222;
+:root {
+  --red-3: #BD2F29;
+  --text: #222;
+  --muted: #555;
+  --card-bg: rgba(245,245,245,0.65);
+  --card-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
+/* Basic reset */
+* { box-sizing: border-box; }
+html,body { height: 100%; margin: 0; }
+
+/* Background: white -> red at BOTTOM (red is anchored to bottom), subtle extent */
+body {
+  font-family: "Zalando Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text);
+
+  /* White at top, subtle mid fade, red concentrated toward bottom.
+     background-size and position ensure the red band stays toward the bottom and not stretched too high. */
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #ffffff 60%,
+    rgba(189,47,41,0.35) 78%,
+    var(--red-3) 100%
+  );
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
 .page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 36px 20px;
+  text-align: center; /* center headers and top content like mockup */
 }
 
 /* Header */
-header {
-  text-align: center;
-  margin-bottom: 2rem;
+.site-header {
+  margin-bottom: 24px;
 }
 
-h1 {
+.title {
   font-weight: 700;
-  font-size: 2.5rem;
+  font-size: 36px;
   margin: 0;
+  line-height: 1;
+  color: var(--text);
 }
 
-.red3 {
-  color: #BD2F29;
-}
+.red3 { color: var(--red-3); }
 
-.desc {
+.lead {
+  margin: 10px 0 0;
+  color: var(--muted);
   font-weight: 400;
-  color: #555;
-  margin-top: 0.5rem;
+  font-size: 15px;
 }
 
 /* Toolbar */
@@ -40,110 +66,131 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
+  gap: 12px;
+  margin: 22px 0;
 }
 
+/* Search bar: fully pill */
 .searchbar {
   display: flex;
   align-items: center;
+  gap: 10px;
   background: #fff;
-  border-radius: 10px;
-  padding: 0.5rem 0.75rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 250px;
+  border-radius: 9999px;
+  padding: 10px 14px;
+  width: 360px;
+  max-width: 88%;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
 
-.searchbar img {
-  width: 18px;
-  height: 18px;
-  opacity: 0.6;
-  margin-right: 0.5rem;
-}
+.searchbar .icon { width: 18px; height: 18px; opacity: .7; }
 
 .searchbar input {
   border: none;
   outline: none;
-  flex: 1;
-  font-family: "Zilla Slab", sans-serif;
-  font-size: 1rem;
   background: transparent;
-  color: #444;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  flex: 1;
 }
 
-.filter-btn {
+/* Filter as perfect circle */
+.filter-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
   background: #fff;
   border: none;
-  border-radius: 10px;
-  padding: 0.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  cursor: not-allowed;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  padding: 0;
+  cursor: default;
 }
 
-.filter-btn img {
-  width: 20px;
-  height: 20px;
-  opacity: 0.6;
-}
+.filter-circle .icon { width: 18px; height: 18px; opacity: .75; }
 
 /* Sections */
-section {
-  margin-bottom: 3rem;
+.font-section {
+  margin-top: 28px;
+  margin-bottom: 34px;
+  text-align: center;
 }
 
-section h2 {
-  font-size: 1.6rem;
+.section-header h2 {
+  margin: 0;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 0.25rem;
 }
 
-.section-desc {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 1rem;
+.section-sub {
+  margin: 6px 0 14px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
-/* Font grid */
+/* Grid responsive */
 .font-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1rem;
+  gap: 14px;
+  grid-template-columns: repeat(1, 1fr);
+  align-items: start;
+  justify-items: center;
+  margin-top: 8px;
 }
 
-/* Font card */
+@media (min-width: 600px) { .font-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 940px) { .font-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1200px) { .font-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* Card (glass, small blur, faint shadow) */
 .font-card {
-  background: rgba(240, 240, 240, 0.6);
+  width: 100%;
+  max-width: 300px;
+  background: var(--card-bg);
   border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(10px);
-  padding: 1rem;
+  padding: 18px 14px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 160ms ease, box-shadow 160ms ease;
   text-align: center;
-  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .font-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.10);
 }
 
-.font-card img {
+/* preview image */
+.font-card .preview {
   width: 100%;
-  height: auto;
+  height: 110px;
+  display: block;
   object-fit: contain;
-  margin-bottom: 0.5rem;
+}
+
+/* names */
+.font-name {
+  margin: 6px 0 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
 }
 
 .creator {
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
 /* Footer */
-footer {
+.site-footer {
   text-align: center;
-  margin-top: 3rem;
+  margin: 40px 0 60px;
 }
-
-.preservia-logo {
-  width: 120px;
-  opacity: 0.8;
-}
+.preservia-logo { width: 120px; opacity: 0.95; }
