@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>3DS Font Library – Preservia</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Zalado Sans (regular + bold) - using the same family name you specified -->
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:wght@400;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="page">
-    <header>
-      <h1><span class="red3">3</span>DS Font Library</h1>
-      <p class="desc">Explore system fonts used across the Nintendo 3DS ecosystem.</p>
+    <header class="site-header">
+      <h1 class="title"><span class="red3">3</span>DS Font Library</h1>
+      <p class="lead">The Nintendo 3DS Font Library is an ever-growing collection of pre-compiled fonts for your Nintendo 3DS.</p>
     </header>
 
     <div class="toolbar">
       <div class="searchbar">
-        <img src="assets/search.png" alt="Search">
-        <input type="text" placeholder="Search..." disabled>
+        <img src="assets/search.png" alt="Search icon" class="icon">
+        <input type="text" placeholder="Search..." aria-label="Search" disabled>
       </div>
-      <button class="filter-btn" disabled>
-        <img src="assets/filter.png" alt="Filter">
+
+      <button class="filter-circle" aria-label="Filters" disabled>
+        <img src="assets/filter.png" alt="Filter icon" class="icon">
       </button>
     </div>
 
-    <section id="original-fonts">
-      <h2>Original Fonts</h2>
-      <p class="section-desc">Fonts ported by the Preservia team.</p>
-      <div class="font-grid" id="original-grid"></div>
-    </section>
+    <main>
+      <section id="original-fonts" class="font-section">
+        <div class="section-header">
+          <h2>Original</h2>
+          <p class="section-sub">Fonts ported by the Preservia team</p>
+        </div>
+        <div class="font-grid" id="original-grid" aria-live="polite"></div>
+      </section>
 
-    <section id="community-fonts">
-      <h2>Community Fonts</h2>
-      <p class="section-desc">Fonts ported by the homebrew community.</p>
-      <div class="font-grid" id="community-grid"></div>
-    </section>
+      <section id="community-fonts" class="font-section">
+        <div class="section-header">
+          <h2>Community</h2>
+          <p class="section-sub">Fonts ported by the homebrew community</p>
+        </div>
+        <div class="font-grid" id="community-grid" aria-live="polite"></div>
+      </section>
+    </main>
 
-    <footer>
-      <img src="assets/logo.png" alt="Preservia Logo" class="preservia-logo">
+    <footer class="site-footer">
+      <img src="assets/logo.png" alt="Preservia logo" class="preservia-logo">
     </footer>
   </div>
 
