@@ -1,108 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preservia</title>
-  <style>
-    body {
-      background: #f1f1f1;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      overflow: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    img#logo {
-      width: 75%;
-      max-width: 400px;
-      height: auto;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 8px #00ff88);
-    }
-
-    #project-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    .project-button {
-      width: 100%;
-      aspect-ratio: 4945 / 1124;
-      border: none;
-      background: none;
-      padding: 0;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .project-button:hover {
-      transform: scale(1.03);
-    }
-
-    .project-button img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 10px;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      width: 100%;
-    }
-
-    footer img {
-      width: 24px;
-      height: 24px;
-      filter: drop-shadow(0 0 4px #00ff88);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preservia Loading Test</title>
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  height:100%;
+  font-family:sans-serif;
+  overflow:hidden;
+  background:#fff;
+}
+#preloader{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+  animation:fill 4s forwards;
+}
+#logo{
+  width:200px;
+  height:auto;
+  opacity:1;
+  transition:opacity 1s;
+}
+#loadingText{
+  margin-top:1rem;
+  font-size:1.2rem;
+  opacity:0;
+  color:#000;
+  animation:fadeIn 1s forwards 1s;
+}
+@keyframes fill{
+  0%{background:linear-gradient(to top,#ffffff 0%,#ffffff 100%);}
+  100%{background:linear-gradient(to top,#c1413c 0%,#c1413c 100%);}
+}
+@keyframes fadeIn{to{opacity:1;}}
+@keyframes fadeOut{to{opacity:0;}}
+#main{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-size:2rem;
+}
+</style>
 </head>
 <body>
-  <img id="logo" src="assets/logo.png" alt="Preservia Logo">
-
-  <div id="project-container"></div>
-
-  <footer>
-    <a href="https://twitter.com/" target="_blank"><img src="assets/twitter.png" alt="Twitter"></a>
-    <a href="https://github.com/preservia" target="_blank"><img src="assets/github.png" alt="GitHub"></a>
-  </footer>
-
-  <script>
-    async function loadProjects() {
-      try {
-        const response = await fetch('manifest.json');
-        const manifest = await response.json();
-        const container = document.getElementById('project-container');
-
-        for (const key in manifest) {
-          const name = manifest[key];
-          const btn = document.createElement('button');
-          btn.classList.add('project-button');
-          btn.innerHTML = `<img src="assets/projects/${name}.png" alt="${name}">`;
-          btn.onclick = () => window.location.href = `/${name}`;
-          container.appendChild(btn);
-        }
-      } catch (e) {
-        console.error('Error loading manifest:', e);
-      }
-    }
-
-    loadProjects();
-  </script>
+<div id="preloader">
+  <img id="logo" src="https://raw.githubusercontent.com/Preservia/assets/main/logo.png" alt="Preservia Logo">
+  <div id="loadingText">Loading fonts...</div>
+</div>
+<div id="main">
+  Hello World
+</div>
+<script>
+const preloader=document.getElementById('preloader');
+const loadingText=document.getElementById('loadingText');
+setTimeout(()=>{loadingText.textContent='Fonts loaded!';},4000);
+setTimeout(()=>{
+  preloader.style.animation='fadeOut 1s forwards';
+  preloader.addEventListener('animationend',()=>{preloader.remove();document.body.style.overflow='auto';});
+},5500);
+</script>
 </body>
 </html>
