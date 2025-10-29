@@ -1,7 +1,60 @@
-// Phase 1 loader: fetches fonts.json and populates Original and Community grids.
-// No search/filter/modal implemented yet.
-
+// Font Library with Modal Support
 document.addEventListener("DOMContentLoaded", async () => {
+  // Modal elements
+  const backdrop = document.getElementById("backdrop");
+  const detailsBox = document.getElementById("detailsBox");
+  const closeBtn = document.getElementById("closeBtn");
+  const detailIcon = document.getElementById("detailIcon");
+  const detailTitle = document.getElementById("detailTitle");
+  const detailCreator = document.getElementById("detailCreator");
+  const detailType = document.getElementById("detailType");
+  const detailDesc = document.getElementById("detailDesc");
+  const downloadBtn = document.getElementById("downloadBtn");
+
+  // Modal functions
+  function openDetails(font) {
+    detailIcon.src = `assets/fonts/previews/${font.name}.png`;
+    detailIcon.alt = `${font.displayName} preview`;
+    detailIcon.onerror = () => {
+      detailIcon.src = "assets/fonts/previews/placeholder.png";
+    };
+    
+    detailTitle.textContent = font.displayName || font.name;
+    detailCreator.textContent = font.creator || "Unknown";
+    detailType.textContent = font.type === "original" ? "Original" : "Community";
+    detailDesc.textContent = `A beautiful font for your Nintendo 3DS. ${font.tags ? `Tags: ${font.tags.join(", ")}` : ""}`;
+
+    downloadBtn.onclick = () => {
+      // For now, just show an alert - you can implement actual download later
+      alert(`Download: ${font.file || font.name}`);
+    };
+
+    backdrop.classList.add("show");
+    document.body.style.overflow = "hidden";
+    detailsBox.classList.remove("show", "hide");
+    detailsBox.style.opacity = "0";
+    detailsBox.style.transform = "scale(0.92)";
+    setTimeout(() => detailsBox.classList.add("show"), 350);
+  }
+
+  function hideDetails() {
+    detailsBox.classList.remove("show");
+    detailsBox.classList.add("hide");
+    setTimeout(() => {
+      backdrop.classList.remove("show");
+      document.body.style.overflow = "";
+    }, 350);
+  }
+
+  // Event listeners for modal
+  closeBtn.addEventListener("click", hideDetails);
+  backdrop.addEventListener("click", e => { 
+    if (e.target === backdrop) hideDetails(); 
+  });
+  document.addEventListener("keydown", e => { 
+    if (e.key === "Escape" && backdrop.classList.contains("show")) hideDetails(); 
+  });
+
   try {
     const res = await fetch("fonts.json");
     if (!res.ok) throw new Error("fonts.json failed to load");
@@ -37,6 +90,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         creator.textContent = `by ${font.creator}`;
         card.appendChild(creator);
       }
+
+      // Add click handler for modal
+      card.addEventListener("click", () => openDetails(font));
 
       // Append to the proper grid
       if (font.type === "original") {
