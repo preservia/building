@@ -160,16 +160,18 @@ footer {
 .details {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 40px;
-  padding: 32px;
+  padding: 24px;
   text-align: center;
-  max-width: 500px;
-  width: 90%;
+  width: clamp(280px, 90vw, 520px);
+  aspect-ratio: 5 / 6; /* Match screenshot ratio */
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   transform: scale(0.92);
   opacity: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  overflow: hidden; /* for zoom mode */
 }
 
 .details.show { 
@@ -202,44 +204,52 @@ footer {
   } 
 }
 
-.close-btn {
-  position: absolute;
-  top: 22px;
-  left: 24px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: #d9d9d9 !important;
-  color: #111 !important;
-  -webkit-appearance: none;
-  appearance: none;
-  font-size: 22px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
+/* removed close button */
 
-.close-btn:hover { 
-  background: #cfcfcf; 
-}
-
-#detailsBox img,
-.details img { 
-  width: 200px !important; 
-  height: 240px !important; 
-  border-radius: 20px; 
-  object-fit: contain !important; 
-  object-position: center;
-  margin: 20px auto !important; 
+/* Screenshot area with fixed ratio */
+.screenshot-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 6;
+  border-radius: 28px;
+  overflow: hidden;
+  margin: 12px 0 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  display: block !important;
   background: #f8f8f8;
-  max-width: none !important;
-  text-align: center;
+}
+
+.screenshot-wrap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  transition: transform .35s ease-in-out, object-fit .35s ease-in-out, border-radius .35s ease-in-out;
+}
+
+/* Zoom state: image fills modal */
+.details.zoomed {
+  padding: 0;
+}
+
+.details.zoomed .screenshot-wrap {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: inherit;
+}
+
+.details.zoomed .screenshot-wrap img {
+  object-fit: cover;
+  transform: scale(1.06);
+}
+
+.details.zoomed h2,
+.details.zoomed .meta,
+.details.zoomed .buttons,
+.details.zoomed .tags {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease-in-out;
 }
 
 .details h2 {
@@ -288,15 +298,28 @@ footer {
   background: #a02620;
 }
 
-.desc {
-  font-family: "Zalando Sans Expanded", sans-serif;
+/* Tags block */
+.tags {
+  width: 100%;
+  text-align: left;
+  margin-top: auto;
+}
+
+.tags-label {
+  font-family: "JetBrains Mono", monospace;
   font-weight: 400;
-  font-size: 18px !important;
-  line-height: 1.4;
+  font-size: 12px;
+  letter-spacing: 1px;
   color: #222;
-  max-width: 540px;
-  padding-top: 10px;
-  margin: 10px auto 0;
+  margin-bottom: 4px;
+}
+
+.tags-values {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 100;
+  font-size: 12px;
+  color: #888888;
+  text-transform: uppercase;
 }
 
 /* Make font cards clickable */

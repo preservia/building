@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Modal elements
   const backdrop = document.getElementById("backdrop");
   const detailsBox = document.getElementById("detailsBox");
-  const closeBtn = document.getElementById("closeBtn");
   const detailIcon = document.getElementById("detailIcon");
   const detailTitle = document.getElementById("detailTitle");
   const detailCreator = document.getElementById("detailCreator");
   const detailType = document.getElementById("detailType");
-  const detailDesc = document.getElementById("detailDesc");
+  const detailTags = document.getElementById("detailTags");
+  const screenshotWrap = document.getElementById("screenshotWrap");
   const downloadBtn = document.getElementById("downloadBtn");
 
   // Modal functions
@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     detailTitle.textContent = font.displayName || font.name;
     detailCreator.textContent = font.creator || "Unknown";
     detailType.textContent = font.type === "original" ? "Original" : "Community";
-    detailDesc.textContent = `A beautiful font for your Nintendo 3DS. ${font.tags ? `Tags: ${font.tags.join(", ")}` : ""}`;
+    // Tags display
+    const tags = Array.isArray(font.tags) ? font.tags : [];
+    detailTags.textContent = tags.map(t => String(t).toUpperCase()).join(", ");
 
     downloadBtn.onclick = (e) => {
       e.preventDefault();
@@ -86,7 +88,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Event listeners for modal
-  closeBtn.addEventListener("click", hideDetails);
+  // Tap on screenshot to toggle zoom
+  if (screenshotWrap) {
+    screenshotWrap.addEventListener("click", () => {
+      detailsBox.classList.toggle("zoomed");
+    });
+  }
   backdrop.addEventListener("click", e => { 
     if (e.target === backdrop) hideDetails(); 
   });
