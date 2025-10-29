@@ -114,9 +114,11 @@ section h2 {
 /* Font grid */
 .font-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
   justify-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Font card */
