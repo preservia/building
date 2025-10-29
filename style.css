@@ -97,6 +97,9 @@ h1 {
 /* Sections */
 section {
   margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 section h2 {
@@ -114,7 +117,7 @@ section h2 {
 /* Font grid */
 .font-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
   gap: 24px;
   justify-content: center;
   align-items: start;
@@ -134,9 +137,11 @@ section h2 {
   padding: 1rem;
   width: 100%;
   max-width: 280px;
+  min-width: 240px;
   box-sizing: border-box;
   overflow: hidden;
   transition: transform 0.2s ease;
+  margin: 0 auto;
 }
 
 .font-card:hover {
