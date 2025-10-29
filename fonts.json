@@ -19,7 +19,7 @@
     "name": "ns-ui",
     "displayName": "Nintendo Swi tch UI",
     "creator": "Preservia",
-    "type": "preservia",m
+    "type": "preservia",
     "file": "switch-ui.cia",
     "tags": ["ui", "port"]
   },
