@@ -54,5 +54,13 @@
     "type": "original",
     "file": "Font - ZeldaGlyphs.cia",
     "tags": ["game", "official"]
+  },
+  {
+    "name": "mine",
+    "displayName": "Mojangles",
+    "creator": "AspectX",
+    "type": "community",
+    "file": "Font - Mojangles (by AspectX).cia",
+    "tags": ["game", "official"]
   }
 ]
