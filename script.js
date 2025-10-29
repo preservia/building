@@ -31,20 +31,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     detailType.textContent = font.type === "original" ? "Original" : "Community";
     detailDesc.textContent = `A beautiful font for your Nintendo 3DS. ${font.tags ? `Tags: ${font.tags.join(", ")}` : ""}`;
 
-    downloadBtn.onclick = () => {
+    downloadBtn.onclick = (e) => {
+      e.preventDefault();
       // Download the .cia file
       const fileName = font.file || `${font.name}.cia`;
       const downloadUrl = `fonts/${fileName}`;
-      console.log(`Downloading: ${downloadUrl}`);
+      console.log(`Attempting download: ${downloadUrl}`);
       
-      // Create a temporary link to trigger download
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = fileName;
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Try direct download first
+      try {
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = fileName;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        console.log('Download initiated successfully');
+      } catch (error) {
+        console.error('Download failed:', error);
+        // Fallback: open in new tab
+        window.open(downloadUrl, '_blank');
+      }
     };
 
     backdrop.classList.add("show");
