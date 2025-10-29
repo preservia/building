@@ -10,41 +10,44 @@ document.addEventListener("DOMContentLoaded", async () => {
     const originalGrid = document.getElementById("original-grid");
     const communityGrid = document.getElementById("community-grid");
 
+    // Clear any existing content
     originalGrid.innerHTML = "";
     communityGrid.innerHTML = "";
 
-    fonts.forEach(f => {
+    fonts.forEach((font) => {
+      // Create the card container
       const card = document.createElement("div");
       card.className = "font-card";
-      card.setAttribute("data-name", f.name);
+      card.setAttribute("data-name", font.name);
 
+      // Font preview image
       const img = document.createElement("img");
       img.className = "preview";
-      img.src = `assets/fonts/previews/${f.name}.png`;
-      img.alt = f.displayName + " preview";
+      img.src = `assets/fonts/previews/${font.name}.png`;
+      img.alt = `${font.displayName} preview`;
       img.onerror = () => {
         img.src = "assets/fonts/previews/placeholder.png";
       };
       card.appendChild(img);
 
-//      const nameEl = document.createElement("div");
-//      nameEl.className = "font-name";
-//      nameEl.textContent = f.displayName;
-//      card.appendChild(nameEl);
-
-      if (f.type === "community" && f.creator) {
-        const c = document.createElement("div");
-        c.className = "creator";
-        c.textContent = `by ${f.creator}`;
-        card.appendChild(c);
+      // Only show creator for community fonts
+      if (font.type === "community" && font.creator) {
+        const creator = document.createElement("div");
+        creator.className = "creator";
+        creator.textContent = `by ${font.creator}`;
+        card.appendChild(creator);
       }
 
-      if (f.type === "original") originalGrid.appendChild(card);
-      else communityGrid.appendChild(card);
+      // Append to the proper grid
+      if (font.type === "original") {
+        originalGrid.appendChild(card);
+      } else if (font.type === "community") {
+        communityGrid.appendChild(card);
+      }
     });
-
   } catch (err) {
     console.error("Error loading fonts.json:", err);
+
     const main = document.querySelector("main");
     const errEl = document.createElement("div");
     errEl.style.color = "#900";
