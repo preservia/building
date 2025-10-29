@@ -120,6 +120,7 @@ section h2 {
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .font-card {
