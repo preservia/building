@@ -277,7 +277,7 @@ footer {
   border-radius: 20px; 
   object-fit: contain !important; 
   object-position: center;
-  margin-bottom: 20px; 
+  margin: 20px auto; 
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   display: block;
   background: #f8f8f8;

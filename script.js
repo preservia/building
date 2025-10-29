@@ -32,8 +32,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     detailDesc.textContent = `A beautiful font for your Nintendo 3DS. ${font.tags ? `Tags: ${font.tags.join(", ")}` : ""}`;
 
     downloadBtn.onclick = () => {
-      // For now, just show an alert - you can implement actual download later
-      alert(`Download: ${font.file || font.name}`);
+      // Download the .cia file
+      const fileName = font.file || `${font.name}.cia`;
+      const downloadUrl = `fonts/${fileName}`;
+      console.log(`Downloading: ${downloadUrl}`);
+      
+      // Create a temporary link to trigger download
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = fileName;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     };
 
     backdrop.classList.add("show");
