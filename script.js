@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       };
       card.appendChild(img);
 
-      const nameEl = document.createElement("div");
-      nameEl.className = "font-name";
-      nameEl.textContent = f.displayName;
-      card.appendChild(nameEl);
+//      const nameEl = document.createElement("div");
+//      nameEl.className = "font-name";
+//      nameEl.textContent = f.displayName;
+//      card.appendChild(nameEl);
 
       if (f.type === "community" && f.creator) {
         const c = document.createElement("div");
