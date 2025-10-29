@@ -56,7 +56,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     backdrop.classList.add("show");
+    // Prevent body scrolling on mobile
     document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
+    document.body.style.top = `-${window.scrollY}px`;
+    
     detailsBox.classList.remove("show", "hide");
     detailsBox.style.opacity = "0";
     detailsBox.style.transform = "scale(0.92)";
@@ -68,7 +73,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     detailsBox.classList.add("hide");
     setTimeout(() => {
       backdrop.classList.remove("show");
+      // Restore body scrolling
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }, 350);
   }
 
