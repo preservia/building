@@ -39,60 +39,6 @@ h1 {
   font-size: 1rem;
 }
 
-/* Toolbar */
-.toolbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.searchbar {
-  display: flex;
-  align-items: center;
-  background: #ffffffcc;
-  border-radius: 9999px; /* full round edges */
-  padding: 0.5rem 0.75rem;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-  width: 250px;
-  backdrop-filter: blur(6px);
-}
-
-.searchbar img {
-  width: 18px;
-  height: 18px;
-  opacity: 0.6;
-  margin-right: 0.5rem;
-}
-
-.searchbar input {
-  border: none;
-  outline: none;
-  flex: 1;
-  font-family: "Zalando Sans Expanded", sans-serif;
-  font-size: 1rem;
-  background: transparent;
-  color: #444;
-}
-
-.filter-btn {
-  background: #ffffffcc;
-  border: none;
-  border-radius: 50%;
-  padding: 0.6rem;
-  width: 40px;
-  height: 40px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-  cursor: not-allowed;
-  backdrop-filter: blur(6px);
-}
-
-.filter-btn img {
-  width: 20px;
-  height: 20px;
-  opacity: 0.6;
-}
 
 /* Sections */
 section {
