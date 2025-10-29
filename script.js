@@ -13,10 +13,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Modal functions
   function openDetails(font) {
-    detailIcon.src = `assets/fonts/screenshots/${font.name}.png`;
+    const screenshotPath = `assets/fonts/screenshots/${font.name}.png`;
+    console.log(`Loading screenshot: ${screenshotPath}`); // Debug log
+    
+    detailIcon.src = screenshotPath;
     detailIcon.alt = `${font.displayName} screenshot`;
     detailIcon.onerror = () => {
-      detailIcon.src = "assets/fonts/screenshots/placeholder.png";
+      console.log(`Screenshot not found: ${screenshotPath}, falling back to preview`);
+      detailIcon.src = `assets/fonts/previews/${font.name}.png`;
+      detailIcon.onerror = () => {
+        detailIcon.src = "assets/fonts/previews/placeholder.png";
+      };
     };
     
     detailTitle.textContent = font.displayName || font.name;
