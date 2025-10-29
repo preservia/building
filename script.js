@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Modal functions
   function openDetails(font) {
-    detailIcon.src = `assets/fonts/previews/${font.name}.png`;
-    detailIcon.alt = `${font.displayName} preview`;
+    detailIcon.src = `assets/fonts/screenshots/${font.name}.png`;
+    detailIcon.alt = `${font.displayName} screenshot`;
     detailIcon.onerror = () => {
-      detailIcon.src = "assets/fonts/previews/placeholder.png";
+      detailIcon.src = "assets/fonts/screenshots/placeholder.png";
     };
     
     detailTitle.textContent = font.displayName || font.name;
