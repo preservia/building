@@ -120,9 +120,10 @@ section h2 {
   grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
   gap: 24px;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   width: 100%;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .font-card {
