@@ -8,13 +8,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   const detailCreator = document.getElementById("detailCreator")
   const detailType = document.getElementById("detailType")
   const detailTags = document.getElementById("detailTags")
-  const screenshotWrap = document.getElementById("screenshotWrap")
   const downloadBtn = document.getElementById("downloadBtn")
 
   // Modal functions
   function openDetails(font) {
     const screenshotPath = `assets/fonts/screenshots/${font.name}.png`
-    console.log(`Loading screenshot: ${screenshotPath}`) // Debug log
+    console.log(`Loading screenshot: ${screenshotPath}`)
 
     detailIcon.src = screenshotPath
     detailIcon.alt = `${font.displayName} screenshot`
@@ -29,18 +28,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     detailTitle.textContent = font.displayName || font.name
     detailCreator.textContent = font.creator || "Unknown"
     detailType.textContent = font.type === "original" ? "Original" : "Community"
-    // Tags display
     const tags = Array.isArray(font.tags) ? font.tags : []
     detailTags.textContent = tags.map((t) => String(t).toUpperCase()).join(", ")
 
     downloadBtn.onclick = (e) => {
       e.preventDefault()
-      // Download the .cia file
       const fileName = font.file || `${font.name}.cia`
       const downloadUrl = `fonts/${fileName}`
       console.log(`Attempting download: ${downloadUrl}`)
 
-      // Try direct download first
       try {
         const link = document.createElement("a")
         link.href = downloadUrl
@@ -52,13 +48,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("Download initiated successfully")
       } catch (error) {
         console.error("Download failed:", error)
-        // Fallback: open in new tab
         window.open(downloadUrl, "_blank")
       }
     }
 
     backdrop.classList.add("show")
-    // Prevent body scrolling on mobile
     document.body.style.overflow = "hidden"
     document.body.style.position = "fixed"
     document.body.style.width = "100%"
@@ -75,7 +69,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     detailsBox.classList.add("hide")
     setTimeout(() => {
       backdrop.classList.remove("show")
-      // Restore body scrolling
       const scrollY = document.body.style.top
       document.body.style.position = ""
       document.body.style.top = ""
@@ -87,25 +80,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 350)
   }
 
-  // Event listeners for modal
-  // Tap on screenshot to toggle zoom
-  if (screenshotWrap) {
-    screenshotWrap.addEventListener("click", (e) => {
-      e.stopPropagation()
-      detailsBox.classList.toggle("zoomed")
-    })
-  }
   backdrop.addEventListener("click", (e) => {
     if (e.target === backdrop) hideDetails()
   })
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && backdrop.classList.contains("show")) {
-      /* Also unzoom if zoomed in when pressing Escape */
-      if (detailsBox.classList.contains("zoomed")) {
-        detailsBox.classList.remove("zoomed")
-      } else {
-        hideDetails()
-      }
+      hideDetails()
     }
   })
 
@@ -117,17 +97,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const originalGrid = document.getElementById("original-grid")
     const communityGrid = document.getElementById("community-grid")
 
-    // Clear any existing content
     originalGrid.innerHTML = ""
     communityGrid.innerHTML = ""
 
     fonts.forEach((font) => {
-      // Create the card container
       const card = document.createElement("div")
       card.className = "font-card"
       card.setAttribute("data-name", font.name)
 
-      // Font preview image
       const img = document.createElement("img")
       img.className = "preview"
       img.src = `assets/fonts/previews/${font.name}.png`
@@ -137,7 +114,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       card.appendChild(img)
 
-      // Only show creator for community fonts
       if (font.type === "community" && font.creator) {
         const creator = document.createElement("div")
         creator.className = "creator"
@@ -145,10 +121,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         card.appendChild(creator)
       }
 
-      // Add click handler for modal
       card.addEventListener("click", () => openDetails(font))
 
-      // Append to the proper grid
       if (font.type === "original") {
         originalGrid.appendChild(card)
       } else if (font.type === "community") {
