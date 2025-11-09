@@ -2,10 +2,7 @@
 body {
   margin: 0;
   font-family: "Zalando Sans Expanded", sans-serif;
-  background: linear-gradient(to top, #bd2f29, #ffffff);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #ffffff;
   color: #222;
   text-align: center;
 }
