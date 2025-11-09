@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const detailTitle = document.getElementById("detailTitle")
   const detailCreator = document.getElementById("detailCreator")
   const detailType = document.getElementById("detailType")
-  const detailTags = document.getElementById("detailTags")
   const downloadBtn = document.getElementById("downloadBtn")
 
   // Modal functions
@@ -28,8 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     detailTitle.textContent = font.displayName || font.name
     detailCreator.textContent = font.creator || "Unknown"
     detailType.textContent = font.type === "original" ? "Original" : "Community"
-    const tags = Array.isArray(font.tags) ? font.tags : []
-    detailTags.textContent = tags.map((t) => String(t).toUpperCase()).join(", ")
 
     downloadBtn.onclick = (e) => {
       e.preventDefault()
