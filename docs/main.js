@@ -24,30 +24,39 @@ uniform float time;
 
 float blob(vec2 uv, vec2 pos, float radius) {
   float d = length(uv - pos);
-  return radius / d;
+  return (radius * radius) / (d * d + 0.0001);
 }
 
 void main() {
   vec2 uv = gl_FragCoord.xy / resolution.xy;
-  uv.x *= resolution.x / resolution.y;
 
-  float t = time * 0.2;
+  float t = time * 0.08; // slower movement
 
   float field = 0.0;
 
-  for (int i = 0; i < 6; i++) {
+  // Larger, independently moving blobs
+  for (int i = 0; i < 5; i++) {
     float fi = float(i);
+
     vec2 pos = vec2(
-      0.5 + 0.3 * sin(t + fi),
-      0.5 + 0.3 * cos(t * 1.2 + fi)
+      0.5 + 0.35 * sin(t * (0.6 + fi * 0.1) + fi * 2.0),
+      0.5 + 0.35 * cos(t * (0.5 + fi * 0.13) + fi * 1.5)
     );
-    field += blob(uv, pos, 0.08);
+
+    float radius = 0.18 + 0.05 * sin(fi * 3.0 + t);
+
+    field += blob(uv, pos, radius);
   }
 
-  float intensity = smoothstep(0.9, 1.5, field);
-  float glow = pow(intensity, 3.0);
+  // Softer blending
+  float intensity = smoothstep(0.7, 1.4, field);
 
-  vec3 color = vec3(0.0, glow * 0.8, glow * 0.5);
+  // Darker emerald tone
+  vec3 color = vec3(
+    0.0,
+    intensity * 0.45,
+    intensity * 0.25
+  );
 
   gl_FragColor = vec4(color, 1.0);
 }
