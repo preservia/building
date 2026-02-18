@@ -43,7 +43,7 @@ h1 {
   letter-spacing: 2px;
 }
 
-button {
+download {
   padding: 14px 28px;
   font-size: 16px;
   border-radius: 999px;
@@ -58,7 +58,7 @@ button {
   transition: all 0.3s ease;
 }
 
-button:hover {
+download:hover {
   background: rgba(0, 255, 150, 0.15);
   border-color: rgba(0, 255, 150, 0.6);
   box-shadow: 0 0 30px rgba(0, 255, 150, 0.25);
